@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Web Executor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="dashboard">
+        <header>
+            <h1>Roblox Exploit Hub</h1>
+            <p>Upload a game, launch it, and test your Lua scripts.</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <h3>Add New Game</h3>
+                <div class="form-group">
+                    <input type="text" id="gameName" placeholder="Game Name (e.g., Blox Fruits)">
+                    <input type="text" id="gameImg" placeholder="Image URL (or leave blank for default)">
+                    <button id="addGameBtn">Add Game to Hub</button>
+                </div>
+            </section>
+
+            <section class="games-section">
+                <h3>Your Games</h3>
+                <div id="gameGrid" class="game-grid">
+                    <div class="game-card" onclick="launchGame('Baseplate Adventure')">
+                        <img src="https://images.rbxcdn.com/9cf70da93806fb41de80537c62ee8f27.png" alt="Game Icon">
+                        <h4>Baseplate Adventure</h4>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="gameScreen" class="hidden">
+        <button id="exitGameBtn">Exit Game</button>
+        <div class="game-environment">
+            <h2>Playing: <span id="currentPlayingName">Game</span></h2>
+            <p class="simulation-note">[Simulated Roblox Environment]</p>
+            
+            <div id="floatingBtn">🔥</div>
+
+            <div id="executorMenu" class="hidden">
+                <div class="menu-header">
+                    <span>Lua Script Executor</span>
+                    <button id="closeMenuBtn">X</button>
+                </div>
+                <div class="menu-body">
+                    <textarea id="luaInput" placeholder="-- Paste your Roblox Lua script here...&#10;print('Hello World!')"></textarea>
+                    <button id="executeBtn">Execute Script</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
