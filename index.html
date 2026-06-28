@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKGPT — AI Website Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">SK</div>
+        <div>
+          <h1>SKGPT</h1>
+          <p>Website builder + code chat</p>
+        </div>
+      </div>
+
+      <div class="side-section">
+        <h3>Start fast</h3>
+        <div class="row" style="margin-bottom:10px">
+          <button class="btn small secondary" data-template="landing">Landing page</button>
+          <button class="btn small secondary" data-template="roblox">Roblox UI</button>
+        </div>
+        <div class="row">
+          <button class="btn small secondary" data-template="anime">Anime game</button>
+          <button class="btn small secondary" data-template="dashboard">Dashboard</button>
+        </div>
+      </div>
+
+      <div class="side-section">
+        <h3>API key</h3>
+        <div class="field">
+          <label for="apiKey">Google Gemini API key</label>
+          <input id="apiKey" type="password" placeholder="Paste your API key" autocomplete="off" />
+        </div>
+        <div class="row">
+          <button class="btn secondary" id="saveKeyBtn">Save key</button>
+          <button class="btn secondary" id="clearKeyBtn">Clear</button>
+        </div>
+        <p class="mini" style="margin:10px 2px 0">Saved locally in your browser only.</p>
+      </div>
+
+      <div class="side-section">
+        <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:10px">
+          <h3 style="margin:0">Chats</h3>
+          <div class="menu-btn">
+            <button class="btn icon secondary" id="menuBtn" aria-label="Open menu">⋯</button>
+            <div class="menu-popover" id="menuPopover">
+              <div class="menu-item" id="newChatMenu">New chat <span>↩</span></div>
+              <div class="menu-item" id="exportChatsMenu">Export chats <span>⤓</span></div>
+              <div class="menu-item danger" id="clearAllMenu">Delete all chats <span>🗑</span></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn" id="newChatBtn" style="width:100%;margin-bottom:12px">New chat</button>
+        <div class="chat-list" id="chatList"></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="info">
+          <h2>AI website builder</h2>
+          <span>Build websites, Roblox Lua scripts, and assistant replies in one place.</span>
+        </div>
+        <div class="controls">
+          <div class="pill">
+            <label for="modeSelect">Mode</label>
+            <select id="modeSelect">
+              <option value="talk">Talking</option>
+              <option value="code">Writing code</option>
+            </select>
+          </div>
+          <div class="pill">
+            <label for="modelSelect">Model</label>
+            <select id="modelSelect">
+              <option value="sk1">SK 1.0</option>
+              <option value="sk15">SK 1.5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="messages" id="messages">
+          <div class="welcome">
+            <h3>Welcome to SKGPT</h3>
+            <p>Describe a website, paste a Roblox Lua idea, or ask for a chill chat. Use <b>Writing code</b> for code output and <b>Talking</b> for normal conversation. Attach files with the plus button.</p>
+          </div>
+        </div>
+        <div class="typing hidden" id="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span>Thinking...</div>
+      </div>
+
+      <div class="composer">
+        <div class="composer-shell">
+          <div class="composer-top">
+            <button class="btn icon ghost" id="attachBtn" aria-label="Attach files">＋</button>
+            <input id="fileInput" type="file" class="hidden" multiple accept="image/*,.txt,.json,.lua,.js,.html,.css,.md,.pdf" />
+            <textarea id="promptInput" placeholder="Type your idea here...
+Example: Build a modern landing page for an anime game." ></textarea>
+            <button class="btn send-btn" id="sendBtn">Send</button>
+          </div>
+
+          <div class="composer-actions">
+            <button class="btn secondary small" id="modelDropBtn">Select model / quality</button>
+            <button class="btn secondary small" id="clearFilesBtn">Clear files</button>
+            <span class="status" id="statusText">Ready</span>
+          </div>
+
+          <div class="quality-box" id="qualityBox">
+            <div class="pill">
+              <label for="qualitySelect">SK 1.5 quality</label>
+              <select id="qualitySelect">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+                <option value="Max">Max</option>
+              </select>
+            </div>
+            <div class="pill switch">
+              <input id="deepThinking" type="checkbox" />
+              <label for="deepThinking">Deep thinking</label>
+            </div>
+          </div>
+
+          <div id="attachedFiles" class="files"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
